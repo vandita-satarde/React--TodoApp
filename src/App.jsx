@@ -33,49 +33,49 @@ function App() {
   }
 
   return (
-    <div className='bg-gray-300 min-h-screen flex justify-between'>
-      <div>
-        <h1 className='text-center text-[35px] md:text-[52px] p-10 md:p-15 font-bold text-gray-800'>Any.Task</h1>
+    <div className='bg-gray-300 min-h-screen flex flex-col md:flex-row justify-between'>
+      <div className='w-full md:w-2/3'>
+        <h1 className='text-center text-[28px] md:text-[52px] p-6 md:p-15 font-bold text-gray-800'>Any.Task</h1>
 
-        <div className='flex '>
-        <div className='flex flex-col border-slate-400 '>
-          {["All", "High", "Medium", "Low"].map((tab,i) => {
-            return (
-              <span 
-                className={` block  text-xl text-center rounded-br-lg rounded-tr-lg my-5 mr-15 py-1
-                  ${tab == selectedTab ? 'bg-slate-400 text-white' : 'bg-white'} `}
-                key={i}
-                onClick={() => setSelectedTab(tab)}
-              >
-                {tab}
-              </span>
-            );
-          })}
-        </div>
-        <div className='m-5 w-[800px] '>
-          {todoList.map((taskItem, index) => {
-            const {task, priority} = taskItem;
+        <div className='flex flex-col md:flex-row'>
+          <div className='flex flex-row md:flex-col border-slate-400 w-full md:w-auto justify-center md:justify-start'>
+            {["All", "High", "Medium", "Low"].map((tab,i) => {
+              return (
+                <span 
+                  className={`block text-base md:text-xl text-center rounded-lg my-2 md:my-5 mx-2 md:mx-0 py-1
+                    ${tab == selectedTab ? 'bg-slate-400 text-white' : 'bg-white'} `}
+                  key={i}
+                  onClick={() => setSelectedTab(tab)}
+                >
+                  {tab}
+                </span>
+              );
+            })}
+          </div>
+          <div className='m-2 md:m-5 w-full md:w-[800px]'>
+            {todoList.map((taskItem, index) => {
+              const {task, priority} = taskItem;
 
-            if(selectedTab != "All" && priority != selectedTab){
-              return null;
-            }
+              if(selectedTab != "All" && priority != selectedTab){
+                return null;
+              }
 
-            return(
-            <TodoCard
-              task={task}
-              priority={priority}
-              key={index}
-              index={index}
-              onDelete={onDelete}
-            />
-            )
-          })}
-        </div>
+              return(
+              <TodoCard
+                task={task}
+                priority={priority}
+                key={index}
+                index={index}
+                onDelete={onDelete}
+              />
+              )
+            })}
+          </div>
         </div>
       </div>
 
-      <div className=' bg-gray-500  w-1/3 h-[729px] flex flex-col justify-center'>
-        <div className='flex flex-col m-20 '>
+      <div className='bg-gray-500 w-full md:w-1/3 h-auto md:h-[729px] flex flex-col justify-center'>
+        <div className='flex flex-col m-6 md:m-20'>
           <input 
             type='text'
             onChange={(e) => {
@@ -85,7 +85,7 @@ function App() {
               })
             }}
             value={todoItem.task}
-            className='bg-white mb-10  rounded-md text-[12px] md:text-xl  h-[40px] md:h-[55px] focus:outline-none px-2'
+            className='bg-white mb-6 md:mb-10 rounded-md text-[12px] md:text-xl h-[40px] md:h-[55px] focus:outline-none px-2'
             placeholder='Enter Task'
           />
 
@@ -107,7 +107,7 @@ function App() {
         </div>
 
         <button 
-          className='text-[12px] md:text-xl text-gray-300 bg-gray-800 md:py-4 rounded-md mx-50'
+          className='text-[12px] md:text-xl text-gray-300 bg-gray-800 py-3 md:py-4 rounded-md mx-6 md:mx-20 mb-6 md:mb-0'
           onClick={() => {
 
             if(!todoItem.task){
